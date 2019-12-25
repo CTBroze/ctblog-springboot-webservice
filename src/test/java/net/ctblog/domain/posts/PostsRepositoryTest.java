@@ -16,11 +16,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PostsRepositoryTest {
 
     @Autowired
-    PostRepository postRepository;
+    PostsRepository postsRepository;
 
     @After //Junit 단위테스트가 끝날때마다 수행되는 메서드 지정
     public void cleanup(){
-        postRepository.deleteAll();
+        postsRepository.deleteAll();
     }
 
     @Test
@@ -29,14 +29,14 @@ public class PostsRepositoryTest {
         String title = "title";
         String content = "content";
 
-        postRepository.save(Posts.builder() //save : 테이블posts에 insert/update 쿼리를 실행, id가 있으면 update 없으면 insert쿼리를 실행한다
+        postsRepository.save(Posts.builder() //save : 테이블posts에 insert/update 쿼리를 실행, id가 있으면 update 없으면 insert쿼리를 실행한다
                 .title(title)
                 .content(content)
                 .author("ctbroze@gmail.com")
                 .build());
 
         //when
-        List<Posts> postsList = postRepository.findAll(); //findAll : 모든 데이터를 조회해오는 메서드
+        List<Posts> postsList = postsRepository.findAll(); //findAll : 모든 데이터를 조회해오는 메서드
 
         //then
         Posts posts = postsList.get(0);
