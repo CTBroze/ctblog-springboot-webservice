@@ -34,4 +34,9 @@ public class Posts { //참고 : Entity 클래스에는 Setter를 만들지 않�
         this.author = author;
     }
 
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
+
 }
