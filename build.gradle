@@ -30,6 +30,7 @@ dependencies {
     compile('com.h2database:h2') //h2 인메모리 관계형 데이터베이스, 별도의 설치가 필요없이 프로젝트 의존성만으로 관리된다.(테스트용 후에 다른DB로 변경)
     compile('org.springframework.boot:spring-boot-starter-mustache') //mustache(템플릿엔진)을 의존성에 추가
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')//소셜 로그인 등 클라이언트 입장에서 기능 구현시 필요한 의존성
+    compile('org.mariadb.jdbc:mariadb-java-client')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
 }
