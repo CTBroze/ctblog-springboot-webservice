@@ -1,11 +1,15 @@
 package net.ctblog.web;
 
 import com.sun.org.apache.xalan.internal.xsltc.runtime.ErrorMessages_zh_CN;
+import net.ctblog.config.auth.SecurityConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -14,12 +18,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringRunner.class) //스프링부트테스트와 제이유닛사이의 연결자 역활
-@WebMvcTest //Web에 집중할수있는 어노테이션
+@WebMvcTest(controllers = MainController.class, excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)})//Web에 집중할수있는 어노테이션
 public class MainControllerTest {
     @Autowired //Spring이 관리하는 bean을 주입받는다.
     private MockMvc mvc; //스프링 MVC테스트의 시작점, API테스트 용
 
     @Test
+    @WithMockUser(roles="USER")
     public void test_return() throws Exception{
         String test = "test";
 
@@ -29,6 +34,7 @@ public class MainControllerTest {
     }
 
     @Test
+    @WithMockUser(roles="USER")
     public void Dto_return() throws Exception{
         String name = "test";
         int amount = 1000;
