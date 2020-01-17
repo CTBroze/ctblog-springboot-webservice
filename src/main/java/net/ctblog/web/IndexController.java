@@ -27,6 +27,15 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/about")
+    public String about(Model model, @LoginUser SessionUser user){
+        model.addAttribute("posts",postsService.findAllDesc());
+        if(user != null){
+            model.addAttribute("userName",user.getName());
+        }
+        return "about";
+    }
+
     @GetMapping("/posts/save")
     public String postsSave(){
         return "posts-save";
@@ -37,5 +46,12 @@ public class IndexController {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
         return "posts-update";
+    }
+
+    @GetMapping("/posts/read/{id}")
+    public String postRead(@PathVariable Long id, Model model){
+        PostsResponseDto dto = postsService.findById(id);
+        model.addAttribute("post", dto);
+        return "post";
     }
 }

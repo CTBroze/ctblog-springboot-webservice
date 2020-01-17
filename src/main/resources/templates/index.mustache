@@ -1,39 +1,39 @@
 {{>layout/header}}
-    <h1>메인페이지 테스트입니다.</h1>
-    <div class="'col-md-12">
+<!-- Page Header -->
+<header class="masthead" style="background-color:Black">
+    <div class="overlay"></div>
+    <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-                {{#userName}}
-                        Logged in as: <span id="user">{{userName}}</span>
-                    <a href="/logout" class="btn btn-info active" role="button">LogOut</a>
-                {{/userName}}
-                {{^userName}}
-                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-                {{/userName}}
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>CTBroze Memory Storge</h1>
+                    <span class="subheading">CTBroze의 개인블로그</span>
+                </div>
             </div>
         </div>
-    <br>
-    <!--목록 출력 영역-->
-    <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
-        <tr>
-            <th>게시글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>최종수정일</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
-        {{#posts}} <!--posts라는 List의 순회(for과 유사)-->
-            <tr>
-                <td>{{id}}</td> <!--뽑아낸 객체의 값을 이용한다-->
-                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                <td>{{author}}</td>
-                <td>{{modifiedDate}}</td>
-            </tr>
-        {{/posts}}
-        </tbody>
-    </table>
-</div>
+    </div>
+</header>
+<!--게시글 출력-->
+    <div class="col-md-12">
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    {{#posts}}
+                    <div class="post-preview">
+                        <a href="/posts/read/{{id}}">
+                            <h2 class="post-title">
+                                {{title}}
+                            </h2>
+                        </a>
+                        <p class="post-meta">Posted by
+                            {{id}}
+                            on {{modifiedDate}}</p>
+                    </div>
+                    <hr>
+                    {{/posts}}
+                </div>
+            </div>
+        </div>
+        <hr>
 {{>layout/footer}}
