@@ -22,6 +22,6 @@ public class IndexControllerTest {
         String body = this.restTemplate.getForObject("/",String.class);
 
         //then
-        assertThat(body).contains("메인페이지 테스트입니다.");
+        assertThat(body).contains("CTBroze Memory Storge");
     }
 }
