@@ -1,5 +1,6 @@
 {{>layout/header}}
-<header class="masthead" style="background-color:green">
+<!--Header-->
+<header class="masthead" style="background-color:#1E90FF">
    <div class="overlay"></div>
    <div class="container">
      <div class="row">
@@ -14,7 +15,7 @@
    </div>
  </header>
 
- <!-- Post Content -->
+<!-- Post Content -->
   <article>
     <div class="container">
       <div class="row">
@@ -24,6 +25,12 @@
       </div>
     </div>
   </article>
+<!-- Button Set-->
+{{#userName}}
+<div>
+    <a type="button" class="btn btn-warning" href="/posts/update/{{id}}">수정</a>
+</div>
+{{/userName}}
 
   <hr>
 {{>layout/footer}}

@@ -46,9 +46,15 @@ public class IndexController {
     }
 
     @GetMapping("/posts/update/{id}")
-    public String postUpdate(@PathVariable Long id, Model model){
+    public String postUpdate(@PathVariable Long id, Model model,@LoginUser SessionUser user){
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
+        if(user!=null){
+            if(!dto.getAuthor().equals(user.getName())){
+                return "update-error";
+            }
+            model.addAttribute("userName",user.getName());
+        }
         return "posts-update";
     }
 
