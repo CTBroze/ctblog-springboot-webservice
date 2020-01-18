@@ -1,4 +1,5 @@
 # Project exclude paths
+buildd
 .gradle
 .idea
 application-oauth.properties

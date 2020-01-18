@@ -28,11 +28,7 @@ public class IndexController {
     }
 
     @GetMapping("/about")
-    public String about(Model model, @LoginUser SessionUser user){
-        model.addAttribute("posts",postsService.findAllDesc());
-        if(user != null){
-            model.addAttribute("userName",user.getName());
-        }
+    public String about(){
         return "about";
     }
 
@@ -51,7 +47,7 @@ public class IndexController {
     @GetMapping("/posts/read/{id}")
     public String postRead(@PathVariable Long id, Model model){
         PostsResponseDto dto = postsService.findById(id);
-        model.addAttribute("post", dto);
+        model.addAttribute("post",dto);
         return "post";
     }
 }
