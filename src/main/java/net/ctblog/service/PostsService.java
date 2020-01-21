@@ -36,8 +36,8 @@ public class PostsService {
     @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc(){
         return postsRepository.findAllDesc().stream()
-                .map(PostsListResponseDto::new) // .map(posts -> new PostsListResponseDto(posts))와 동일
-                .collect(Collectors.toList());
+                        .map(PostsListResponseDto::new) // .map(posts -> new PostsListResponseDto(posts))와 동일
+                        .collect(Collectors.toList());
     }
 
     @Transactional
