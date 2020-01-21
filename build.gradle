@@ -14,17 +14,21 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
 
 group 'net.ctblog'
 version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
+
+
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web') //
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.projectlombok:lombok') //lombok
     compile('org.springframework.boot:spring-boot-starter-data-jpa') //스프링부트용 Spring Data Jpa 추상화 라이브러리
     compile('com.h2database:h2') //h2 인메모리 관계형 데이터베이스, 별도의 설치가 필요없이 프로젝트 의존성만으로 관리된다.(테스트용 후에 다른DB로 변경)
