@@ -33,7 +33,6 @@ public class IndexController {
 
     @GetMapping("/about")
     public String about(Model model, @LoginUser SessionUser user){
-        model.addAttribute("posts",postsService.findAllDesc());
         if(user != null){
             model.addAttribute("userName",user.getName());
         }
@@ -42,7 +41,7 @@ public class IndexController {
 
     @GetMapping("/posting")
     public String posting(Model model, @LoginUser SessionUser user){
-        model.addAttribute("post",postsService.findAllDesc());
+        model.addAttribute("posts",postsService.findAllDesc());
         if(user != null){
             model.addAttribute("userName",user.getName());
         }
@@ -51,7 +50,6 @@ public class IndexController {
 
     @GetMapping("/posts/save")
     public String postsSave(Model model, @LoginUser SessionUser user){
-        model.addAttribute("posts",postsService.findAllDesc());
         if(user != null){
             model.addAttribute("userName",user.getName());
         }

@@ -24,4 +24,14 @@ public class IndexControllerTest {
         //then
         assertThat(body).contains("CTBroze Memory Storge");
     }
+
+    @Test
+    public void about_load(){
+        //when
+        String body = this.restTemplate.getForObject("/about",String.class);
+
+        //then
+        assertThat(body).contains("ABOUT");
+    }
+
 }
