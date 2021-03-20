@@ -1,34 +1,34 @@
 package com.ctbroze;
 
+import com.ctbroze.domain.posts.Posts;
+import com.ctbroze.domain.posts.PostsRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 
-/* JSP사용을 위한 WAR배포를 위하여 전체 주석처리
-package net.ctblog;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-
-@SpringBootApplication
-public class Application {
-    public static void main(String[] args){
-        SpringApplication.run(Application.class, args);
-    }
-}
-*/
+import java.util.stream.IntStream;
 
 //War
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder) {
-        return applicationBuilder.sources(Application.class);
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    //Post Test Data
+    @Bean
+    public CommandLineRunner initPostData(PostsRepository postsRepositor) {
+        return args -> IntStream.rangeClosed(1, 50).forEach((i -> {
+            Posts posts = Posts.builder()
+                    .title("title" + i)
+                    .content("content" + i)
+                    .author("author" + i)
+                    .build();
+
+            postsRepositor.save(posts);
+        }));
     }
 }

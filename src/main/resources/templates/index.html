@@ -2,7 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="layout/head"></th:block>
 <body>
-
+    <div class="col-md-12">
+        <br>
+        <div class="container">
+            <div class="row">
+                <!--게시글 출력-->
+                <div class="col-lg-8 col-md-10 mx-auto" th:each="post : ${postList}">
+                    <div>
+                        <a href="/posts/read/${post.id}">
+                            <h2 th:text="${post.title}"></h2>
+                        </a>
+                        <p th:text="|Posted on ${post.modifiedDate}|"></p>
+                        <hr>
+                    </div>    
+                </div>
+                <div>
+                    <a class="btn btn-primary float-right" href="/posting">과거글보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="layout/footer"></th:block>
 </body>
-<th:block th:replace="layout/footer"></th:block>
 </html>
