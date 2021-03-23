@@ -7,8 +7,6 @@ import com.ctbroze.service.PostsService;
 import com.ctbroze.web.dto.PostsListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +20,7 @@ public class IndexController {
     PostsService postsService;
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user){
-        List<PostsListResponseDto> list = postsService.findAllDesc();
+        List<PostsListResponseDto> list = postsService.findTop10ByOrderByIdDesc();
         model.addAttribute("postList",list);
         if(user!=null){
             model.addAttribute("userName",user.getName());

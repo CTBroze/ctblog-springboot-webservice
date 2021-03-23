@@ -42,23 +42,23 @@
     <header>
         <nav class="navbar navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Logo</a>
+                <a class="navbar-brand" href="/">CTBlog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">DailyLife</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Study</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Habby</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Info</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/daily">DailyLife</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/study">Study</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/hobby">Hobby</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/info">Info</a></li>
                     </ul>
                     <ul class="navbar-nav">
                         <!-- 로그인된 경우 -->
-                        <h3 th:if="${userName != 'noLogin'}" th:text="${userName}"></h3>
-                        <a th:if="${userName != 'noLogin'}" class="btn" href="/logout">Logout</a>
+                        <li class="nav-item"><h4 class="nav-link" th:if="${userName != 'noLogin'}" th:text="${userName}"></h4></li>
+                        <li class="nav-item"><a class="nav-link btn" th:if="${userName != 'noLogin'}" href="/logout">Logout</a></li>
                         <!-- 미 로그인시 -->
-                        <a th:if="${userName == 'noLogin'} " class="btn" href="/login">Login</a>
+                        <li class="nav-item"><a class="nav-link" th:if="${userName == 'noLogin'}" href="/login">Login</a></li>
                     </ul>
                 </div>
             </div>

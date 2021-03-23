@@ -33,10 +33,17 @@ public class PostsService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostsListResponseDto> findAllDesc(){
-        return postsRepository.findAllDesc().stream()
+    public List<PostsListResponseDto> findByOrderByIdDesc(){
+        return postsRepository.findByOrderByIdDesc().stream()
                         .map(PostsListResponseDto::new) // .map(posts -> new PostsListResponseDto(posts))와 동일
                         .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findTop10ByOrderByIdDesc(){
+        return postsRepository.findTop10ByOrderByIdDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
     }
 
     @Transactional
