@@ -8,14 +8,9 @@ group 'com.ctbroze'
 version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
-configurations {
-    compileOnly{
-        extendsFrom annotationProcessor
-    }
-}
-
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -24,9 +19,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.session:spring-session-jdbc'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
     runtimeOnly 'com.h2database:h2'
     implementation 'org.mariadb.jdbc:mariadb-java-client'

@@ -37,7 +37,7 @@ public class PostsRepositoryTest {
         List<Posts> postsList = postsRepository.findAll(); //findAll : 모든 데이터를 조회해오는 메서드
 
         //then
-        Posts posts = postsList.get(0);
+        Posts posts = postsList.get(50);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
     }
