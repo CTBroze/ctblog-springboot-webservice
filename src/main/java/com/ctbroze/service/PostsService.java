@@ -7,6 +7,10 @@ import com.ctbroze.web.dto.PostsResponseDto;
 import com.ctbroze.web.dto.PostsSaveRequestDto;
 import com.ctbroze.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +31,7 @@ public class PostsService {
     @Transactional
     public Long update(Long id, PostsUpdateRequestDto requestDto){
         Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+ id));
-        posts.update(requestDto.getTitle(), requestDto.getContent());
+        posts.update(requestDto.getTag(),requestDto.getTitle(), requestDto.getContent());
 
         return id;
     }
@@ -57,6 +61,13 @@ public class PostsService {
         Posts entity = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+ id));
 
         return new PostsResponseDto(entity);
+    }
+
+    public Page<Posts> getBoardList(Pageable pageable, Long tag){
+        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() -1);
+        pageable = PageRequest.of(page,10, Sort.by("id").descending());
+
+        return postsRepository.findByOrderByIdDescWhereTag(tag,pageable);
     }
 
 }

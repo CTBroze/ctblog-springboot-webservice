@@ -6,12 +6,14 @@ import lombok.Getter;
 @Getter
 public class PostsResponseDto {
     private Long id;
+    private Long tag;
     private String title;
     private String content;
     private String author;
 
     public PostsResponseDto(Posts entity){
         this.id = entity.getId();
+        this.tag = entity.getTag();
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.author = entity.getAuthor();

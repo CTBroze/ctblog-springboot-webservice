@@ -1,28 +1,23 @@
 package com.ctbroze;
 
-import com.ctbroze.domain.posts.Posts;
-import com.ctbroze.domain.posts.PostsRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
 
-import java.util.stream.IntStream;
-
-//War
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
-    //Post Test Data
+    //테스트코드, 스프링시작전 게시글 50개를 등록하고 시작
+    /*
     @Bean
     public CommandLineRunner initPostData(PostsRepository postsRepository) {
         return (args) -> {
             IntStream.rangeClosed(1, 50).forEach(i -> {
                 Posts posts = Posts.builder()
+                        .tag(new Long(1))
                         .title("title" + i)
                         .content("content" + i)
                         .author("author" + i)
@@ -32,4 +27,5 @@ public class Application extends SpringBootServletInitializer {
             });
         };
     }
+    */
 }

@@ -24,10 +24,12 @@ public class PostsRepositoryTest {
     @Test
     public void postSava_Load() {
         //given
+        Long tag = new Long(1);
         String title = "title";
         String content = "content";
 
         postsRepository.save(Posts.builder() //save : 테이블posts에 insert/update 쿼리를 실행, id가 있으면 update 없으면 insert쿼리를 실행한다
+                .tag(tag)
                 .title(title)
                 .content(content)
                 .author("ctbroze@gmail.com")
@@ -47,6 +49,7 @@ public class PostsRepositoryTest {
         //given
         LocalDateTime now = LocalDateTime.of(2019,12,26,0,0,0);
         postsRepository.save(Posts.builder()
+                .tag(new Long(1))
                 .title("title")
                 .content("content")
                 .author("ctbroze@gmail.com")

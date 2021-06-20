@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/head"></th:block>
+</head>
+<body>
+<section>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>글번호</th>
+                <th>제목</th>
+                <th>작성일</th>
+            </tr>
+            <tr th:each="postList: ${postList}">
+                <td th:text="${postList.id}"></td>
+                <td th:text="${postList.title}"></td>
+                <td th:text="${postList.modifiedDate}"></td>
+            </tr>
+        </table>
+
+        <nav class="col align-self-center" style="text-align: center;">
+            <ul class="pagination" th:with="start=${T(Math).floor(postList.number/10)*10 +1},last=(${start+9<postList.totalPages ? start + 9 : postList.totalPages})">
+                <li class="page-item">
+                    <a class="page-link" th:href="@{/dailylife(page=1)}" aria-label="First">
+                        <span aria-hidden="true">First</span>
+                    </a>
+                </li>
+                <li class="page-item" th:class="${postList.first} ? 'disabled'">
+                    <a class="page-link" th:href="${postList.first} ? '#' : @{/dailylife(page=${postList.number})}" aria-label="Previous">
+                        <span aria-hidden="true">&lt;</span>
+                    </a>
+                </li>
+                <li class="page-item" th:each="page: ${#numbers.sequence(start,last)}" th:class="${page == postList.number + 1} ? 'active'">
+                    <a class="page-link" th:text="${page}" th:href="@{/dailylife(page=${page})}"></a>
+                </li>
+                <li class="page-item" th:class="${postList.last} ? 'disabled'">
+                    <a class="page-link" th:href="${postList.last} ? '#' : @{/dailylife(page=${postList.number + 2})}" aria-label="Next">
+                        <span>&gt;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" th:href="@{/dailylife(page=${postList.totalPages})}" aria-label="Last">
+                        <span aria-hidden="true">Last</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
+<th:block th:replace="layout/footer"></th:block>

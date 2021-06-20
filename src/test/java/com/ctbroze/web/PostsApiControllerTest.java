@@ -61,9 +61,11 @@ public class PostsApiControllerTest {
     @WithMockUser(roles="USER")
     public void Posts_save() throws Exception{
         //given
+        Long tag = new Long(1);
         String title = "title";
         String content = "content";
         PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+                .tag(tag)
                 .title(title)
                 .content(content)
                 .author("ctbroze@gmail.com")
@@ -89,16 +91,19 @@ public class PostsApiControllerTest {
     public void Posts_update() throws Exception{
         //given
         Posts savedPosts = postsRepository.save(Posts.builder()
-        .title("title")
-        .content("content")
-        .author("ctbroze@gmail.com")
-        .build());
+                .tag(new Long(1))
+                .title("title")
+                .content("content")
+                .author("ctbroze@gmail.com")
+                .build());
 
         Long updateId = savedPosts.getId();
+        Long expectedTag = new Long(2);
         String expectedTitle = "title2";
         String expectedContent = "content2";
 
         PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
+                .tag(expectedTag)
                 .title(expectedTitle)
                 .content(expectedContent)
                 .build();

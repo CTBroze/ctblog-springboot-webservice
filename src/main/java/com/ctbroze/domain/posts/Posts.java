@@ -20,6 +20,9 @@ public class Posts extends BaseTimeEntity { //참고 : Entity 클래스에는 Se
     @GeneratedValue(strategy = GenerationType.IDENTITY) //PK생성규칙을 나타낸다
     private Long id;
 
+    @Column(nullable = false)
+    private Long tag;
+
     @Column(length = 500, nullable = false) //Column을 굳이 선언하지 않아도 Entity클래스이기에 전부 Column취급이지만 기본값 이외 변경이 필요할때 사용
     private String title;
 
@@ -29,13 +32,15 @@ public class Posts extends BaseTimeEntity { //참고 : Entity 클래스에는 Se
     private String author;
 
     @Builder
-    public Posts(String title, String content, String author){
+    public Posts(Long tag, String title, String content, String author){
         this.title = title;
+        this.tag = tag;
         this.content = content;
         this.author = author;
     }
 
-    public void update(String title, String content){
+    public void update(Long tag, String title, String content){
+        this.tag = tag;
         this.title = title;
         this.content = content;
     }
